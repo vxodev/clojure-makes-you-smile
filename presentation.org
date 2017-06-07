@@ -1,0 +1,17 @@
+* Clojure
+
+** It makes you smile!
+
+https://github.com/vxodev/clojure-makes-you-smile
+
+* Anders Engström - Vem är jag?
+
+- WM-data, 1999
+- Epireal, 2005
+- Boss Media, 2008
+- HRM Software, 2013
+- Gears of Leo
+
+* Hur hittade jag Clojure?
+
+Av och till, men 2013 (SAW)

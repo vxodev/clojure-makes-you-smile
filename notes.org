@@ -16,7 +16,11 @@
   - Created by Rich Hickey *year*
   - Go here. Read and view everything.
     - https://github.com/tallesl/Rich-Hickey-fanclub
-    
+
+* Why is clojure so exciting (for me)?
+
+- 
+
 * Quick introduction
 
   - The *simplest* language of them all
