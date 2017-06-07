@@ -1,0 +1,94 @@
+* ( Clojure )
+
+- "LEARN at least one new language every year."
+- It will change the way you think
+
+* Yes, but why *Clojure*?
+
+  - It's a LISP!
+  - Most other main-stream languages are "same same, but different"
+  - Forces you to exercise new areas of the brain
+    
+* Quick history
+
+  - LISP - McCarthy 1958
+    - "Lots of Irritating Superfluous Parentheses"
+  - Created by Rich Hickey *year*
+  - Go here. Read and view everything.
+    - https://github.com/tallesl/Rich-Hickey-fanclub
+    
+* Quick introduction
+
+  - The *simplest* language of them all
+    - Simple made easy: Rich Hickey https://www.youtube.com/watch?v=rI8tNMsozo0
+    - "Simplicity is prerequisite for reliability -- Edsger Dijkstra"
+  - Data types (literals, yay)
+  - Defining bindings
+  - Functions
+  - Philosophy
+    - ""It is better to have 100 functions operate on one data structure than 10 functions on 10 data structures." —Alan Perlis
+    - Compare this two how normal OO programs deal with this
+    - Everything is a typed class. How do you reuse and compose functions on those types?
+    - Everything is a Hash.
+
+But - the parenthesis?
+
+#+BEGIN_SRC clojure
+(. (. person getAddress) getZipCode) ;; 4
+(.. person getAddress getZipCode) ;; 2
+#+END_SRC
+
+#+BEGIN_SRC java
+person.getAddress().getZipCode(); // 4
+#+END_SRC
+
+* Datatypes
+
+| type       | example | in java                 |
+|------------+---------+-------------------------|
+| string     | "foo"   | String                  |
+| charachter | \f      | Charachter              |
+| regex      | #"fo*"  | Pattern                 |
+| integer    | 42      | Integer/Long/BigInteger |
+| double     | 3.14159 | Double/BigDecimal       |
+| boolean    | true    | Boolean                 |
+| nil        | nil     | null                    |
+| symbol     | foo, +  | N/A                     |
+| keyword    | :foo    | N/A                     |
+
+* State?
+
+STATE is only *changed* in well-defined places.
+Atoms, Agents and Refs
+
+* Immutability
+
+  
+"Mutable shared state is the root to all evil" -- Dale Schumacher
+By default everything is immutable. 
+Persistent data-structures
+
+* Why is mutability bad/hard
+
+- "In which state is my object?"
+- When did it change?
+- Who changed it?
+- Add threads to the  mix and presto: Mayhem!
+- "The value of values" (Rich Hickey) https://www.youtube.com/watch?v=-6BsiVyC1kM
+
+* Macros
+
+Invent your own language.
+Play by your rules.
+
+* Java Interop
+
+* Javascript Interop
+
+* DEVELOPER Experience
+
+  - The REPL - oh joy!
+  - 
+
+
+
