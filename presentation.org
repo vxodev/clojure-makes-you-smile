@@ -1,17 +1,99 @@
-* Clojure
+* ( Clojure )
 
-** It makes you smile!
+[[file:pics/lisp_cycles.png]]
 
 https://github.com/vxodev/clojure-makes-you-smile
 
-* Anders Engström - Vem är jag?
+* ( why Clojure )
 
-- WM-data, 1999
-- Epireal, 2005
-- Boss Media, 2008
-- HRM Software, 2013
+- (LISP is good for you)\trade
+
+* ( about Me )
+
 - Gears of Leo
+  - HRM Software, 2013
+    - Boss Media, 2008
+      - Epireal, 2005
+        - WM-data, 1999
+          - Lund
+          
+- Java (done it all...)
+- Ruby (2001)
+- Scala, Haskell, Python, Erlang, Javascript ...
 
-* Hur hittade jag Clojure?
+* ( what makes clojure Great? )
 
-Av och till, men 2013 (SAW)
+- Rich Hickey!
+- Immutability
+- Explicit State
+- Java interop
+- Clojurescript
+- The community
+- Developer experience (warm and fuzzy feeling)
+
+* ( what is Clojure? )
+
+- En LISP på JVM:en, CLR och Javascript
+- Funktionellt språk
+- Skapades av Rich Hickey. Första releasen 2009
+
+* ( LISP - Lots if irritating superflous parentheses )
+
+[[file:pics/McCarthy.jpg]]
+
+"Hittade" LISP 1958.
+
+* ( rich Hickey )
+
+[[file:pics/fakerichhickey.jpg]]
+
+https://github.com/tallesl/Rich-Hickey-fanclub
+
+* ( rich hickey Essentials )
+
+** Simple made easy
+
+https://www.youtube.com/watch?v=rI8tNMsozo0
+
+** Hammock-driven development
+
+https://www.youtube.com/watch?v=f84n5oFoZBc
+
+** Are we there yet?
+
+https://www.infoq.com/presentations/Are-We-There-Yet-Rich-Hickey
+
+* ( clojure Philosophy )
+
+#+BEGIN_QUOTE
+"It is better to have 100 functions operate on one data structure than 10
+functions on 10 data structures." 
+-- Alan Perlis
+#+END_QUOTE
+
+#+BEGIN_QUOTE
+"Simplicity is prerequisite for reliability." 
+-- Edsger Dijkstra
+#+END_QUOTE
+
+* ( clojure.tour )
+* ( clojure.tour/data-types )
+* ( clojure.tour/data-types collections )
+* ( clojure.tour/data-types maps )
+* ( clojure.tour/syntax )
+* ( clojure.tour/functions )
+* ( clojure.tour/higher-order-functions )
+* ( immutability )
+
+#+BEGIN_QUOTE
+"Mutable shared state is the root to all evil" 
+-- Dale Schumacher
+#+END_QUOTE
+
+(Almost) everything in Clojure is a value. (Almost) every data-type is
+immutable.
+
+* ( immutability - example )
+
+
+
