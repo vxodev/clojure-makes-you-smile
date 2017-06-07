@@ -4,10 +4,6 @@
 
 https://github.com/vxodev/clojure-makes-you-smile
 
-* ( why Clojure )
-
-- (LISP is good for you)\trade
-
 * ( about Me )
 
 - Gears of Leo
@@ -21,17 +17,26 @@ https://github.com/vxodev/clojure-makes-you-smile
 - Ruby (2001)
 - Scala, Haskell, Python, Erlang, Javascript ...
 
+* ( why Clojure )
+
+[[file:pics/lisp.jpg]]
+
+( LISP is good for you )\trade
+
 * ( what makes clojure Great? )
 
 - Rich Hickey!
 - Immutability
 - Explicit State
+- Code is data
 - Java interop
 - Clojurescript
 - The community
 - Developer experience (warm and fuzzy feeling)
 
 * ( what is Clojure? )
+
+[[file:pics/clojure.png]]
 
 - En LISP på JVM:en, CLR och Javascript
 - Funktionellt språk
@@ -77,12 +82,158 @@ functions on 10 data structures."
 #+END_QUOTE
 
 * ( clojure.tour )
+
+#+BEGIN_SRC clojure
+  (defn sum-of-range
+    [start end]
+    (let [count (inc (- end start))]
+      (/ (* (+ start end) count) 2)))
+
+  (defn end-seq "A seq of start values per week"
+    [n] (iterate inc n))
+  (defn start-seq "A seq of end values per week"
+    [n] (iterate (partial + 2) 0))
+  (defn start-and-ends "A lazy seq of starts and ends of weeks"
+    [n] (map vector (start-seq n) (end-seq n)))
+
+  (defn finance
+    [n]
+    ;; Calculate the total sum
+    (reduce + 0
+            ;; Map to the sum of that week
+            (map #(apply sum-of-range %)
+                 ;; All start-end pairs of n
+                 (take (inc n) (start-and-ends n)))))
+#+END_SRC
+
 * ( clojure.tour/data-types )
-* ( clojure.tour/data-types collections )
-* ( clojure.tour/data-types maps )
+
+| TYPE       | SAMPLE  |
+|------------+---------+
+| string     | "foo"   |
+| charachter | \f      |
+| regex      | #"fo*"  |
+| integer    | 42      |
+| double     | 3.14159 |
+| boolean    | true    |
+| nil        | nil     |
+| symbol     | foo, +  |
+| keyword    | :foo    |
+
 * ( clojure.tour/syntax )
+
+#+BEGIN_SRC clojure
+;; An expression is always of the form (fn arg1 arg2 ...)
+(inc 2)
+;; 3
+
+(println "Hello")
+;; <prints 'Hello' to stdout
+
+(+ 1 1)
+;; 2
+
+;; Evaluation order - inner expressions are always evaluated first
+
+(+ 1 (* 4 5))
+;; 21
+#+END_SRC
+
+* ( clojure.tour/data-types collections )
+
+#+BEGIN_SRC clojure
+;; Vector
+[1 4 6]
+
+;; List
+'(1 4 6)
+
+;; Difference?
+(conj [1 4 6] 8)
+;; [1 4 6 8]
+(conj '(1 4 6) 8)
+;; (8 1 4 6)
+#+END_SRC
+
+* ( clojure.tour/data-types maps )
+
+#+BEGIN_SRC clojure
+  (def record {:album "Blunderbuss"
+               :artist "Jack White"
+               :released 2013})
+
+  (get record :artist)
+  ;; "Jack White"
+
+  (:album record)
+  ;; "Blunderbuss"
+
+  (assoc record :tracks 13)
+  ;; {:album "Blunderbuss" :artist "Jack White" :released 2013 :tracks 13}
+
+  (update record :released inc)
+  ;; {:album "Blunderbuss" :artist "Jack White" :released 2014 :tracks 13}
+
+#+END_SRC
+
 * ( clojure.tour/functions )
+
+#+BEGIN_SRC clojure
+  ;; Anonymous function
+  (fn [n] (+ 1 n))
+
+  ;; Or - shorter:
+  #(+ 1 %)
+
+  ;; Not that useful:
+  ((fn [n] #(+ 1 %)) 3)
+  ;; 4
+
+  ;; Bind to a symbol
+  (def add-one (fn [n] (+ 1 n)))
+
+  (add-one 3)
+  ;; 4
+
+  ;; defn-macro
+  (defn add-one [n] (+ n 1))
+
+  (add-one 3)
+  ;; 4
+#+END_SRC
+
 * ( clojure.tour/higher-order-functions )
+
+** Map
+
+#+BEGIN_SRC clojure
+(def coll ["a" "bbb" "cccc"])
+
+(map #(count %) coll)
+;; (1 3 4)
+
+;; Or shorter
+(map count coll)
+#+END_SRC
+
+** Filter
+
+#+BEGIN_SRC clojure
+  (def coll [1 2 3 4])
+
+  (filter odd? coll)
+  ;; (1 3)
+#+END_SRC
+
+** Reduce
+
+#+BEGIN_SRC clojure
+  (def numbers [1 2 3 4 5])
+
+  (reduce + 0 numbers)
+  ;; 15
+#+END_SRC
+
 * ( immutability )
 
 #+BEGIN_QUOTE
@@ -90,10 +241,39 @@ functions on 10 data structures."
 -- Dale Schumacher
 #+END_QUOTE
 
+- "In what state is my object?"
+- "When did it change? Who changed it?"
+- Add threads: Mayhem!
+
 (Almost) everything in Clojure is a value. (Almost) every data-type is
 immutable.
 
-* ( immutability - example )
+Sharing data is not a problem anymore!
+
+* ( explicit State in Clojure )
 
 
+
+* ( code is Data )
+
+* ( java Interop )
+
+* ( clojureScript )
+
+* ( clojure Community \hearts )
+
+* ( developer Experience )
+
+* ( getting Started )
+
+- [[http://steve-yegge.blogspot.se/2006/03/execution-in-kingdom-of-nouns.html][Execution in the kingdom of Nouns]]
+
+* ( end )
+
+#+BEGIN_QUOTE
+"Learn one new language each year."
+-- Pragmatic Programmer
+#+END_QUOTE
+
+Learn Clojure 2017!
 

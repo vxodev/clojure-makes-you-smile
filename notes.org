@@ -1,4 +1,70 @@
 
+* ( Clojure )
+
+* ( about Me )
+
+(Nästan) examinerad naturgeograf.
+
+Brinner för systemutveckling och problemlösning. 
+
+* ( why Clojure )
+
+Lisp exercerar nya kopplingar i hjärnan.
+
+Lite som Texas Hold'em - "Takes an hour to learn and a life-time to master"
+
+Framför allt - för mig personligen:
+
+Samma kick jag fick när jag upptäckte Ruby efter ett antal år med Java och C++ - den får jag från Clojure.
+
+Förhoppningsvis kan jag få fler att upptäcka Clojure. 
+
+Det tog mig ett par försök att bli "hooked". Syntaxen skrämde bort mig, och jag var fortfarande fast i OO - kunde inte riktigt släppa det.
+
+Tips: skifta mindset från OO till FP - en bra artikel:
+
+* ( what makes clojure Great? )
+
+
+
+
+* ( what is Clojure? )
+
+* ( LISP - Lots if irritating superflous parentheses )
+
+* ( rich Hickey )
+
+* ( rich hickey Essentials )
+
+* ( clojure Philosophy )
+
+* ( clojure.tour )
+* ( clojure.tour/data-types )
+* ( clojure.tour/data-types collections )
+* ( clojure.tour/data-types maps )
+* ( clojure.tour/syntax )
+* ( clojure.tour/functions )
+* ( clojure.tour/higher-order-functions )
+* ( immutability )
+* ( explicit State in Clojure )
+
+
+* ( code is Data )
+
+* ( java Interop )
+
+* ( clojureScript )
+
+* ( clojure Community \hearts )
+
+* ( developer Experience )
+
+* ( getting Started )
+
+* ( end )
+
+* NOTES
+
 
 - Intro (Heading)
 - About me
