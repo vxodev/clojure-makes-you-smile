@@ -30,15 +30,48 @@ Tips: skifta mindset från OO till FP - en bra artikel:
 
 * ( what is Clojure? )
 
+- Functional
+- Dynamically typed language
+- ~clojure.spec~ - contract-driven
+- Ägnade 2.5 år åt att värka fram Clojure (med egna medel).
+- Nalle Puh: Tänk tänk tänk
+
 * ( LISP - Lots if irritating superflous parentheses )
+
+"Hittade"?
+Vad särskiljer Lisp från andra språk.
+Quotes about Lisp
 
 * ( rich Hickey )
 
+Mannen bakom Clojure.
+
 * ( rich hickey Essentials )
+
+Fantastiskt många bra videos. Dessa tre speciellt
+
+- Simple Made Easy
+  - Uncomplecting things
+  - Simple programs work
+- Hammock-driven Development
+  - *Think* about a problem
+  - Agile is nice, but we're solving problems - don't forget to identify and understand the problem.
+- Are we there yet
+  - About 'accidental complexity', values and time
+  - OO vs data-driven FP
 
 * ( clojure Philosophy )
 
+
+
 * ( clojure.tour )
+
+
+Looks intimidating!
+Scary!
+
+Relax. 
+
 * ( clojure.tour/data-types )
 * ( clojure.tour/data-types collections )
 * ( clojure.tour/data-types maps )
@@ -46,21 +79,57 @@ Tips: skifta mindset från OO till FP - en bra artikel:
 * ( clojure.tour/functions )
 * ( clojure.tour/higher-order-functions )
 * ( immutability )
+
+(Almost) everything in Clojure is a value. (Almost) every data-type is
+immutable.
+
+
+Resource-usage? If nothing is mutated - how can write efficient programs?
+Persistent Data Structures
+
+Sharing data is not a problem anymore! 
+
+Detta förändrar sättet man strukturerar sin lösning. Don't be afraid of the *values*.
+
 * ( explicit State in Clojure )
 
+I Clojure modifierar man inte state för ett "objekt".
+Man definierar en _plats_ där global state can uppdateras. Eller rättare sagt - där current state finns.
+
+"Instead, state means the value of an identity at a point in time."
 
 * ( code is Data )
+
+Macros - core feature of Lisps. 
+
+Thanks to the read-eval-print loop (REPL) everything can be changed.
+
+Great for writing DSLs. Great for 
+
+- TODO: Example
+- Infix
+- Show example from Clojure code
+- Threading macro
+
+* ( polymorphism a la Carte )
+
+Protocols
+Multimethods
+Records
 
 * ( java Interop )
 
 * ( clojureScript )
+
+Killer feature. Full stack. Ship libraries for both JVM and Javascript.
+Share code. Share data. 
 
 * ( clojure Community \hearts )
 
 * ( developer Experience )
 
 * ( getting Started )
-
+http://www.braveclojure.com/
 * ( end )
 
 * NOTES

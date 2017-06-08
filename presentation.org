@@ -46,7 +46,7 @@ https://github.com/vxodev/clojure-makes-you-smile
 
 [[file:pics/McCarthy.jpg]]
 
-"Hittade" LISP 1958.
+John McCarthy - "Hittade" LISP 1958.
 
 * ( rich Hickey )
 
@@ -82,6 +82,8 @@ functions on 10 data structures."
 #+END_QUOTE
 
 * ( clojure.tour )
+
+WELP! 
 
 #+BEGIN_SRC clojure
   (defn sum-of-range
@@ -245,18 +247,68 @@ functions on 10 data structures."
 - "When did it change? Who changed it?"
 - Add threads: Mayhem!
 
-(Almost) everything in Clojure is a value. (Almost) every data-type is
-immutable.
-
-Sharing data is not a problem anymore!
-
 * ( explicit State in Clojure )
 
 
 
 * ( code is Data )
 
+No likey prefix notation?
+
+#+BEGIN_SRC clojure
+  (+ 1 1)
+  ;; 2
+
+  (concat [1 2 3] [4 5 6])
+  ;; (1 2 3 4 5 6)
+
+  (defmacro infix
+    "Allows you to call a fn with two args as '(arg1 fn arg2)'"
+    [infixed] (list (second infixed) (first infixed) (last infixed)))
+
+  (infix (1 + 1))
+  ;; 2
+
+  (infix ([1 2 3] concat [4 5 6]))
+  ;; (1 2 3 4 5 6)
+#+END_SRC
+
+Thread macro
+
+#+BEGIN_SRC clojure
+  (-> 2
+      (inc)
+      (repeat :a))
+  ;; (:a :a :a)
+
+  (source ->)
+  ;; (defmacro ->
+  ;;   "Threads the expr through the forms. Inserts x as the
+  ;;   second item in the first form, making a list of it if it is not a
+  ;;   list already. If there are more forms, inserts the first form as the
+  ;;   second item in second form, etc."
+  ;;   {:added "1.0"}
+  ;;   [x & forms]
+  ;;   (loop [x x, forms forms]
+  ;;     (if forms
+  ;;       (let [form (first forms)
+  ;;             threaded (if (seq? form)
+  ;;                        (with-meta `(~(first form) ~x ~@(next form)) (meta form))
+  ;;                        (list form x))]
+  ;;         (recur threaded (next forms)))
+  ;;       x)))
+
+  (macroexpand '(2 (inc) (repeat :a)))
+  ;; (2 (inc) (repeat :a))
+
+
+#+END_SRC
+
+* ( polymorphism a la Carte )
+
 * ( java Interop )
+
+
 
 * ( clojureScript )
 
