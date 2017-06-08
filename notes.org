@@ -1,3 +1,10 @@
+
+Prepare
+
+- org-present
+- hide modeline (SPC T m T)
+- decrease text size
+
 * ( Clojure )
 
 * ( about Me )
