@@ -57,7 +57,7 @@ the rest of your days, even if you never actually use Lisp itself a lot."
 
 [[file:pics/McCarthy.jpg]]
 
-John McCarthy - "Hittade" LISP 1958.
+John McCarthy - Invented LISP 1958.
 
 #+BEGIN_QUOTE
 "The greatest single programming language ever designed"
