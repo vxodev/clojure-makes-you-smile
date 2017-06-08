@@ -3,48 +3,59 @@
             [quil.core :as q]
             [quil.middlewares.fun-mode :as funmode]))
 
-(defonce state-mailbox (async/chan 3))
+(defprotocol Greeter
+  (say-hello [this name] "Say hello!"))
 
-(defn setup "Create the initial state" []
-  {:background [200 200 200]
-   :color [255 128 100]
-   :x     150
-   :y     150
-   :size  10})
+(defrecord Swedish []
+  Greeter
+  (say-hello [_ n] (format "Hej, %s" n)))
 
-(defn calc-next-state
-  [{:keys [x y size] :as state}]
+(defrecord English []
+  Greeter
+  (say-hello [_ n] (format "Hello, %s" n)))
 
-  ;; (assoc state :x (inc x))
+(extend-type java.lang.String
+  Greeter
+  (say-hello [s n] (format "Um, I'm a string (%s).. Hi, %s" s n)))
+
+(say-hello (->Swedish) "VxoDev")
+;; => "Hej, VxoDev"
+(say-hello (->English) "VxoDev")
+;; => "Hello, VxoDev"
+(say-hello "a string" "VxoDev")
+;; => "Um, I'm a string (a string).. Hi, VxoDev"
 
 
+(defmulti get-a-beer :brand)
 
+(defmethod get-a-beer "Oppigård"
+  [{:keys [qty]}]
+  (format "Great choice - here's %d bottles of fine beer!" qty))
 
-(defn render
-  "Render the state 's'."
-  [{:keys [background x y size color]}]
+(defmethod get-a-beer "Budweiser"
+  [{:keys [qty]}]
+  (format "%d bottles of water coming up!" qty))
 
-  (apply q/background background)
-  (q/ellipse-mode :center)
-  (apply q/fill color)
-  (q/ellipse x y size size))
+(defmethod get-a-beer :default
+  [_]
+  "All out of that stuff, sorry.")
 
-(defn next-state
-  "Poll the mailbox or use the state from current canvas."
-  [s]
-  (calc-next-state (or (async/poll! state-mailbox) s)))
+(get-a-beer {:brand "Oppigård" :qty 2})
+;; => "Great choice - here's 2 bottles of fine beer!"
+(get-a-beer {:brand "Budweiser" :qty 3})
+;; => "3 bottles of water coming up!"
+(get-a-beer {:brand "Heineken" :qty 15})
+;; => "All out of that stuff, sorry."
 
-(defn restart!
-  ([] (restart! (setup)))
-  ([s] (async/put! state-mailbox s)))
+(def record {:id   12
+             :name "Bucket"
+             :qty  58})
 
-(defn run-me
-  "Display a canvas - hook up functions for drawing."
-  []
-  (q/sketch
-   :features [:keep-on-top]
-   :size [300 300]
-   :middleware [funmode/fun-mode]
-   :update #'next-state
-   :draw #'render
-   :setup #'setup))
+record
+;; => {:id 12, :name "Bucket", :qty 58}
+
+(assoc record :qty 99)
+;; => {:id 12, :name "Bucket", :qty 99}
+
+record
+;; => {:id 12, :name "Bucket", :qty 58}

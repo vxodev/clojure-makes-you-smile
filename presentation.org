@@ -1,12 +1,16 @@
 * ( Clojure )
 
+
+
+
 [[file:pics/lisp_cycles.png]]
 
 https://github.com/vxodev/clojure-makes-you-smile
 
 * ( about Me )
 
-- Gears of Leo
+
+- Gears of Leo, 2016
   - HRM Software, 2013
     - Boss Media, 2008
       - Epireal, 2005
@@ -19,9 +23,6 @@ https://github.com/vxodev/clojure-makes-you-smile
 
 * ( why Clojure )
 
-[[file:pics/lisp.jpg]]
-
-( LISP is good for you )\trade
 
 #+BEGIN_QUOTE
 "Lisp is worth learning for the profound enlightenment experience you will have
@@ -29,6 +30,11 @@ when you finally get it; that experience will make you a better programmer for
 the rest of your days, even if you never actually use Lisp itself a lot."
 -- Eric Raymond, "How to Become a Hacker"
 #+END_QUOTE
+
+[[file:pics/lisp.jpg]]
+
+( LISP is good for you )\trade
+
 
 * ( what makes clojure Great? )
 
@@ -46,7 +52,9 @@ the rest of your days, even if you never actually use Lisp itself a lot."
 [[file:pics/clojure.png]]
 
 - En LISP på JVM:en, CLR och Javascript
+  
 - Funktionellt och dynamiskt typat
+  
 - Skapades av Rich Hickey. Första releasen 2009
 
 * ( LISP - Lots if irritating superflous parentheses )
@@ -133,7 +141,7 @@ WELP!
 * ( clojure.tour/data-types )
 
 | TYPE       | SAMPLE  |
-|------------+---------+
+|------------+---------|
 | string     | "foo"   |
 | charachter | \f      |
 | regex      | #"fo*"  |
@@ -319,6 +327,23 @@ a-number
 - "When did it change? Who changed it?"
 - Add threads: Mayhem!
 
+* ( immutability )
+
+#+BEGIN_SRC clojure
+  (def record {:id   12
+               :name "Bucket"
+               :qty  58})
+
+  record
+  ;; => {:id 12, :name "Bucket", :qty 58}
+
+  (assoc record :qty 99)
+  ;; => {:id 12, :name "Bucket", :qty 99}
+
+  record
+  ;; => {:id 12, :name "Bucket", :qty 58}
+#+END_SRC
+
 * ( explicit State in Clojure )
 
 "State means the _value_ of and _identity_ at a point in time."
@@ -367,7 +392,7 @@ Validate an atom
 
 * ( code is Data )
 
-No likey prefix notation?
+** Escape prefix notation
 
 #+BEGIN_SRC clojure
   (+ 1 1)
@@ -387,7 +412,7 @@ No likey prefix notation?
   ;; (1 2 3 4 5 6)
 #+END_SRC
 
-Thread macro
+** The thread macro
 
 #+BEGIN_SRC clojure
   (-> 2
@@ -397,10 +422,6 @@ Thread macro
 
   (source ->)
   ;; (defmacro ->
-  ;;   "Threads the expr through the forms. Inserts x as the
-  ;;   second item in the first form, making a list of it if it is not a
-  ;;   list already. If there are more forms, inserts the first form as the
-  ;;   second item in second form, etc."
   ;;   {:added "1.0"}
   ;;   [x & forms]
   ;;   (loop [x x, forms forms]
@@ -414,15 +435,61 @@ Thread macro
 
   (macroexpand '(2 (inc) (repeat :a)))
   ;; (2 (inc) (repeat :a))
-
-
 #+END_SRC
 
 * ( polymorphism a la Carte )
 
-- Protocols (like interfaces)
-- Multimethods (value-based function dispatch)
-- Records ("objects")
+** Protocols & Records
+
+#+BEGIN_SRC clojure
+  (defprotocol Greeter
+    (say-hello [this name] "Say hello!"))
+
+  (defrecord Swedish []
+    Greeter
+    (say-hello [_ n] (format "Hej, %s" n)))
+
+  (defrecord English []
+    Greeter
+    (say-hello [_ n] (format "Hello, %s" n)))
+
+  (extend-type java.lang.String
+    Greeter
+    (say-hello [s n] (format "Um, I'm a string (%s).. Hi, %s" s n)))
+
+
+  (say-hello (->Swedish) "VxoDev")
+  ;; => "Hej, VxoDev"
+  (say-hello (->English) "VxoDev")
+  ;; => "Hello, VxoDev"
+  (say-hello "a string" "VxoDev")
+  ;; => "Um, I'm a string (a string).. Hi, VxoDev"
+#+END_SRC
+
+** Multi-methods
+
+#+BEGIN_SRC clojure
+  (defmulti get-a-beer :brand)
+
+  (defmethod get-a-beer "Oppigård"
+    [{:keys [qty]}]
+    (format "Great choice - here's %d bottles of fine beer!" qty))
+
+  (defmethod get-a-beer "Budweiser"
+    [{:keys [qty]}]
+    (format "%d bottles of water coming up!" qty))
+
+  (defmethod get-a-beer :default
+    [_]
+    "All out of that stuff, sorry.")
+
+  (get-a-beer {:brand "Oppigård" :qty 2})
+  ;; => "Great choice - here's 2 bottles of fine beer!"
+  (get-a-beer {:brand "Budweiser" :qty 3})
+  ;; => "3 bottles of water coming up!"
+  (get-a-beer {:brand "Heineken" :qty 15})
+  ;; => "All out of that stuff, sorry."
+#+END_SRC
 
 * ( java Interop )
 
@@ -451,6 +518,10 @@ Thread macro
   ;; ["elem1" "elem2" "elem3"]
 #+END_SRC
 
+* ( java Interop )
+
+** () shootout
+
 #+BEGIN_SRC java
 public Person createPerson(String name, String location) { // 2
     Person person = new Person(); // 2
@@ -474,23 +545,29 @@ public Person createPerson(String name, String location) { // 2
 https://clojurescript.org/
 
 - Compiles Clojure to Javascript
+  
 - Sharing data, functions between server and client
+  
 - React frameworks (Om, Reagent)
 
 * ( clojure Community \hearts )
 
 - Öppet och inkluderande
   - http://www.clojurebridge.org/
+    
 - Kreativt
   - Quil http://quil.info
   - Overtone http://overtone.github.io
   - Functional Composition: https://www.youtube.com/watch?v=Mfsnlbd-4xQ
+    
 - Tips : Clojure Remote https://clojureremote.com/
 
 * ( developer Experience )
 
 - The REPL :-)
+  
 - Gigantiskt ekosystem med bibliotek från Java
+  
 - Funktionellt - enkelt att resonera och verifiera kod
 
 * ( getting Started )
@@ -509,10 +586,12 @@ https://clojurescript.org/
 
 ** Learning
 
-- Clojure for the Brave and True
-  - http://www.braveclojure.com/
-- Clojure for Java Programmers
-  - https://www.youtube.com/watch?v=P76Vbsk_3J0
+- Try Clj :: http://www.tryclj.com/
+- 4 Clojure :: http://www.4clojure.com/
+- Codewars ::  (https://www.codewars.com/)
+- Clojure for the Brave and True :: http://www.braveclojure.com/
+- Clojure for Java Programmers :: https://www.youtube.com/watch?v=P76Vbsk_3J0
+- #vxodev :: Yes indeed :-)
 
 * ( end )
 
@@ -521,5 +600,5 @@ https://clojurescript.org/
 -- Pragmatic Programmer
 #+END_QUOTE
 
-Learn Clojure 2017!
+** Learn Clojure in 2017! :-)
 

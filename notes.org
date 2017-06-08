@@ -2,9 +2,13 @@
 
 * ( about Me )
 
-(Nästan) examinerad naturgeograf.
+(Nästan) examinerad naturgeograf. Bor i Vislanda.
 
 Brinner för systemutveckling och problemlösning. 
+
+- Java (everything.. EJB 1.0, JSTL, JSF, WebWork, Actors)
+- Ruby, Scala, Haskell
+- Messed around with: Python, Erlang, Javascript, Elm etc.
 
 * ( why Clojure )
 
@@ -71,11 +75,9 @@ Fantastiskt många bra videos. Dessa tre speciellt
 
 - Simplicity: Meaning - do one thing. Do not complect unrelated things.
 - State vs. Values.
-
 - In OO: Everything is a typed class. How do you reuse and compose functions on those types?
 
 * ( clojure.tour )
-
 
 Looks intimidating!
 Scary!
@@ -96,9 +98,11 @@ Ingen komplicerad operator-precedence - alla uttryck evalueras innifrån och ut.
 
 Konsistent syntax (fast det kan ta en stund att vänja sig vid)
 
+Detta är det enda som krävs för att kunna "parsa" Clojure.
+
 * ( clojure.tour/vars )
 
-Inte "vars" i den egentliga meningen. Det är en namngivning av ett värde.
+Inte "vars" i den egentliga meningen. Det är en namngivning av ett värde - binding.
 
 * ( clojure.tour/data-types collections )
 
@@ -138,6 +142,8 @@ Sharing data is not a problem anymore!
 
 Detta förändrar sättet man strukturerar sin lösning. Don't be afraid of the *values*.
 
+Jämför språk där man muterar state - defensiv kodning, locks, protecting data.
+
 * ( explicit State in Clojure )
 
 I Clojure modifierar man inte state för ett "objekt".
@@ -149,7 +155,7 @@ STM - Software Transactional memory
 
 * ( code is Data )
 
-Macros - core feature of Lisps. 
+Macros - core feature of Lisps. Jag använder det inte speciellt ofta, men det finns där.
 
 I de flesta andra språk är syntaxen något som är lagt ovanpå själva implementationen. I LISPs är normalt en väldigt stor del av språket implementerat i, well, LISP.
 
@@ -159,18 +165,12 @@ För att t.ex. extenda Ruby eller Java krävs det att man hackar C.
 
 Thanks to the read-eval-print loop (REPL) everything can be changed.
 
-Great for writing DSLs. Great for 
-
-- TODO: Example
-- Infix
-- Show example from Clojure code
-- Threading macro
+Great for writing DSLs. Great for focusing on the problem domain.
 
 * ( polymorphism a la Carte )
 
-Protocols
-Multimethods
-Records
+- Protocols and Records
+- Multimethods
 
 * ( java Interop )
 
@@ -183,11 +183,11 @@ Records
 Killer feature. Full stack. Ship libraries for both JVM and Javascript.
 Share code. Share data. 
 
-Growing - recently a Clojurescript compiler in Javascript (no JVM dep).
-
+- Growing - recently a Clojurescript compiler in Javascript (no JVM dep).
 - I hear it's great! A bunch of frameworks that builds on top of React (Om, Reagent)
 - Merges well with Clojure's way to handle state (an atom)
 - Compiles Javascript using Googles Closure compiler
+  - Effective
 - https://clojurescript.org/
 - Full stack language. Immutable datastructures all the way.
 
@@ -209,90 +209,27 @@ Growing - recently a Clojurescript compiler in Javascript (no JVM dep).
   - The REPL changes how you develop code.
     - Det känns mer som att bygga med model-lera än med meccano.
     - Våldsamt snabb turn-around.
+      - Running unit-tests is snappy!
     - Fun!
+    - Starta Clojure-app med remote REPL directly!
+      - Gör det möjligt att modifiera kod i runtime (co0l)
+      #+BEGIN_SRC 
+      -Dclojure.server.repl="{:port 5555 :accept clojure.core.server/repl}"
+      #+END_SRC
   - The functional paradigms are clear.
+    - Data first -- en annan paradigm än OO
   - Ecosystem for integration with Java libraries is hugh.
   - The same excitement and joy as when discovering Ruby after spending 5 years in Java-land
     
 * ( getting Started )
 
-IDEs finns 
+Börja litet - kasta dig inte över en REST-service med databas-access direkt.
+
+Det tar en stund att konfigurera om tankebanorna till Lisp och FP.
+
+Använder du inte Emacs eller VIM redan nu - så börja *inte* lära dig dem
+samtidigt som Clojure. Nightcode är ett utmärkt instegsverktyg (kommer med
+Leiningen i paketet).
 
 * ( end )
 
-* NOTES
-
-
-- Intro (Heading)
-- About me
-  - Java (everything.. EJB 1.0, JSTL, JSF, WebWork, Actors)
-  - Ruby, Scala, Haskell
-  - Messed around with: Python, Erlang, Javascript, Elm etc.
-- Why did I start with Clojure?
-- What makes Clojure special (for me)?
-  - Agenda
-  - Same warm feeling that I got when discovering Ruby ~2001.
-  - Writing Clojure makes me happy. Forces me to think in new ways.
-    - Even if I don't use it at work - it affects the way I code in Java as well.
-- It's a LISP
-  - And it's invented by Rich Hickey :-)
-  - Mentality
-- Immutability
-  - Why mutability bad?
-  - Instant Clojure
-    - Datatypes
-  - Persistent data structures
-- Mutability
-  - Wait, what?!
-  - Things need to change, but in Clojure it's *explicit*
-- Clojurescript
-  - I hear it's great! A bunch of frameworks that builds on top of React (Om, Reagent)
-  - Merges well with Clojure's way to handle state (an atom)
-  - Compiles Javascript using Googles Closure compiler
-  - https://clojurescript.org/
-  - Full stack language. Immutable datastructures all the way.
-- Polymorphism a la Carte
-  - Protocol
-  - Multi-methods
-- Java interop
-- Community \hearts
-  - Very open community
-  - Creative (Inventing stuff) and a bit artsy
-    - Quil and Overtone
-    - Check out http://overtone.github.io/ and http://quil.info/
-    - Very inclusive
-- Developer Experience
-  - The REPL
-  - Thinking inside-out.
-- Some live coding (maybe, not sure I can do that)
-- Learn one new language each year. Learn Clojure in 2017 :-)
-- How to get started?
-  - Install Leiningen
-  - Editors
-    - Emacs, VIM, Cursive (IntelliJ), Nightcode
-  - http://www.4clojure.com/
-  - Codewars (https://www.codewars.com/)
-
-- Reading:
-  - http://nathanmarz.com/blog/clojure-or-how-i-learned-to-stop-worrying-and-love-the-paren.html
-    - "Clojure prefers immutable data and forces the programmer to be explicit about manipulating state. Clojure makes explicit the difference between a value (an immutable piece of data) and an identity (an entity whose value changes over time)."
-    - Simple - untangled - avoid complex (as in braided) code.
-  - https://www.quora.com/Why-would-someone-learn-Clojure
-    - JVM-based. Rich selection of libraries.
-    - It's a LISP: http://www.paulgraham.com/diff.html
-      - First language (well, there was only Fortran before..) with conditionals, first-class functions, recursion, garbage-collection, trees of expressions, read-eval-print loop.
-      - Code is data: Enter macros. The abstraction level is Lisp in a much larger portion than in any other language.
-      - Concurrency: side-effects, STM
-  - https://medium.com/@maleghast/why-i-love-clojure-a96847401fb1
-    - The REPL changes how you develop code.
-    - Fun!
-    - The functional paradigms are clear.
-    - Ecosystem for integration with Java libraries is hugh.
-    - The same excitement and joy as when discovering Ruby after spending 5 years in Java-land
-  - http://steve-yegge.blogspot.se/2006/03/execution-in-kingdom-of-nouns.html
-    - A good essay about the different way of looking at problems in strict OO vs FP.
-  - http://blog.venanti.us/why-clojure/
-    - Many ppl have bad experiences of Lisp from University
-    - Again, the REPL
-    - Macros
-    
