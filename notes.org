@@ -37,6 +37,8 @@ Saker som jag tycker gör att Clojure särskiljer sig från andra språk.
 * ( what is Clojure? )
 
 - Functional
+  - Not strict functional like Haskell though.
+  - Side-effects are *allowed* (but avoided)
 - Dynamically typed language
   - ~clojure.spec~ - contract-driven
 - Ägnade 2.5 år åt att värka fram Clojure (med egna medel).
@@ -76,7 +78,14 @@ Fantastiskt många bra videos. Dessa tre speciellt
 - Simplicity: Meaning - do one thing. Do not complect unrelated things.
 - State vs. Values.
 - In OO: Everything is a typed class. How do you reuse and compose functions on those types?
+  
+- Value :: an immutable magnitud
+- Identity :: An entity associated with a series of causual related values of time.
+- State :: Value of an identity at a moment in time
+- Time :: Relative before/after ordering of causal values.
 
+- Everything is oriented around 'data' and functions applied to data
+    
 * ( clojure.tour )
 
 Looks intimidating!
@@ -136,7 +145,7 @@ Hur sitter det ihop?
 immutable.
 
 Resource-usage? If nothing is mutated - how can write efficient programs?
-Persistent Data Structures
+Persistent Data Structures -- Structural Sharing.
 
 Sharing data is not a problem anymore! 
 
@@ -218,8 +227,17 @@ Share code. Share data.
       #+END_SRC
   - The functional paradigms are clear.
     - Data first -- en annan paradigm än OO
-  - Ecosystem for integration with Java libraries is hugh.
-  - The same excitement and joy as when discovering Ruby after spending 5 years in Java-land
+    - Pure functions are worry-free
+    - Everything is oriented around 'data' and functions applied to data
+      - T.ex. ~HoneySQL~
+      - Define SQL queries as Clojure data-types
+      - Use standard Clojure functions to compose, merge, and re-use constructs
+      - This works out of the box.
+      - Ring Middlewares - Web Application Library
+        - Operate on a Map containing request, return Map containing response
+        - All tools are available to use.
+      - Ecosystem for integration with Java libraries is hugh.
+      - The same excitement and joy as when discovering Ruby after spending 5 years in Java-land
     
 * ( getting Started )
 
