@@ -204,6 +204,10 @@ a-number
 
 ;; Functions operating on 'seqs'
 ;; count, concat, cons, take, first, cycle, partition, sort etc.
+
+;; Infinit lazy sequences
+(take 5 (cycle [1 2 3]))
+;; (1 2 3 1 2)
 #+END_SRC
 
 * ( clojure.tour/data-types maps )
@@ -361,7 +365,6 @@ Validate an atom
   ;; ["yellow"]
 #+END_SRC
 
-
 * ( code is Data )
 
 No likey prefix notation?
@@ -464,7 +467,6 @@ public Person createPerson(String name, String location) { // 2
     (.setLocation location))) ;; 4
 #+END_SRC
 
-
 * ( clojureScript )
 
 [[file:pics/cljs-logo-120b.png]]
@@ -477,13 +479,40 @@ https://clojurescript.org/
 
 * ( clojure Community \hearts )
 
-
+- Öppet och inkluderande
+  - http://www.clojurebridge.org/
+- Kreativt
+  - Quil http://quil.info
+  - Overtone http://overtone.github.io
+  - Functional Composition: https://www.youtube.com/watch?v=Mfsnlbd-4xQ
+- Tips : Clojure Remote https://clojureremote.com/
 
 * ( developer Experience )
 
+- The REPL :-)
+- Gigantiskt ekosystem med bibliotek från Java
+- Funktionellt - enkelt att resonera och verifiera kod
+
 * ( getting Started )
 
-- [[http://steve-yegge.blogspot.se/2006/03/execution-in-kingdom-of-nouns.html][Execution in the kingdom of Nouns]]
+** IDEs
+
+- Emacs (obviously)
+- VIM
+- Cursive (IntelliJ)
+- Nightcode
+
+** Build tools
+
+- Leiningen
+- Boot
+
+** Learning
+
+- Clojure for the Brave and True
+  - http://www.braveclojure.com/
+- Clojure for Java Programmers
+  - https://www.youtube.com/watch?v=P76Vbsk_3J0
 
 * ( end )
 
