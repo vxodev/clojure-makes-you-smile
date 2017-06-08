@@ -9,7 +9,7 @@ Brinner för systemutveckling och problemlösning.
 
 * ( why Clojure )
 
-Lisp exercerar nya kopplingar i hjärnan.
+Lisp exercerar nya kopplingar i hjärnan. Andra språk är ganska like varandra. Clojure "sticker ut".
 
 Lite som Texas Hold'em - "Takes an hour to learn and a life-time to master"
 
@@ -23,28 +23,36 @@ Det tog mig ett par försök att bli "hooked". Syntaxen skrämde bort mig, och j
 
 Tips: skifta mindset från OO till FP - en bra artikel:
 
+http://steve-yegge.blogspot.se/2006/03/execution-in-kingdom-of-nouns.html
+
 * ( what makes clojure Great? )
 
+Saker som vi ska snacka om.
 
-
+Saker som jag tycker gör att Clojure särskiljer sig från andra språk.
 
 * ( what is Clojure? )
 
 - Functional
 - Dynamically typed language
-- ~clojure.spec~ - contract-driven
+  - ~clojure.spec~ - contract-driven
 - Ägnade 2.5 år åt att värka fram Clojure (med egna medel).
 - Nalle Puh: Tänk tänk tänk
 
 * ( LISP - Lots if irritating superflous parentheses )
 
-"Hittade"?
-Vad särskiljer Lisp från andra språk.
-Quotes about Lisp
+- "Hittade"?
+  - Ursprungligen en matematisk notation för datorer (lambda calculus, Alonso Church)
+- Vad särskiljer Lisp från andra språk.
+  - Med en liten uppsättning grundfunktioner och datastrukturer så kan man definiera upp resten av språket.
+  - First language (well, there was only Fortran before..) with conditionals, first-class functions, recursion, garbage-collection, trees of expressions, read-eval-print loop.
+  - Code is data: Enter macros. The abstraction level is Lisp in a much larger portion than in any other language.
 
 * ( rich Hickey )
 
 Mannen bakom Clojure.
+
+Väldigt konsekvent och analytisk. Säger han något om en lösning så har han tänkt igenom den.
 
 * ( rich hickey Essentials )
 
@@ -62,7 +70,10 @@ Fantastiskt många bra videos. Dessa tre speciellt
 
 * ( clojure Philosophy )
 
+- Simplicity: Meaning - do one thing. Do not complect unrelated things.
+- State vs. Values.
 
+- In OO: Everything is a typed class. How do you reuse and compose functions on those types?
 
 * ( clojure.tour )
 
@@ -73,16 +84,53 @@ Scary!
 Relax. 
 
 * ( clojure.tour/data-types )
-* ( clojure.tour/data-types collections )
-* ( clojure.tour/data-types maps )
+
+Dina vanliga datatyper. Med vissa undantag - symboler är en dedikerad datatyp.
+
 * ( clojure.tour/syntax )
+
+Basic expressions
+
+Everyting evaluates to something.
+
+Ingen komplicerad operator-precedence - alla uttryck evalueras innifrån och ut.
+
+Konsistent syntax (fast det kan ta en stund att vänja sig vid)
+
+* ( clojure.tour/vars )
+
+Inte "vars" i den egentliga meningen. Det är en namngivning av ett värde.
+
+* ( clojure.tour/data-types collections )
+
+De flesta funktioner returnerar 'lazy' collections. Dvs - de evalueras inte förrän man börjar konsumera dem.
+
+Det finns 'sets' också. Alla collections i Clojure implementerar ett ~ISeq~ protokoll mot vilket i princip alla collection-funktioner är skrivna (få typer - många funktioner)
+
+* ( clojure.tour/data-types maps )
+
+Bread and butter of clojure.
+
 * ( clojure.tour/functions )
+
+Functions are first-class values. So just bind them to a var.
+
+Defn macro - not really a macro, but it behaves as one.
+
 * ( clojure.tour/higher-order-functions )
+
+HOF - tar eller returnerar funktioner.
+
+De vanliga FP-abstraktionerna ( flatMap -> mapcat )
+
+* ( clojure.tour/composing-higher-order-functions )
+
+Hur sitter det ihop? 
+
 * ( immutability )
 
 (Almost) everything in Clojure is a value. (Almost) every data-type is
 immutable.
-
 
 Resource-usage? If nothing is mutated - how can write efficient programs?
 Persistent Data Structures
@@ -96,11 +144,19 @@ Detta förändrar sättet man strukturerar sin lösning. Don't be afraid of the 
 I Clojure modifierar man inte state för ett "objekt".
 Man definierar en _plats_ där global state can uppdateras. Eller rättare sagt - där current state finns.
 
-"Instead, state means the value of an identity at a point in time."
+I Clojure är mutering *explicit* och görs i tydligt deklarerade zoner.
+
+STM - Software Transactional memory
 
 * ( code is Data )
 
 Macros - core feature of Lisps. 
+
+I de flesta andra språk är syntaxen något som är lagt ovanpå själva implementationen. I LISPs är normalt en väldigt stor del av språket implementerat i, well, LISP.
+
+Det ger helt andra möjligheter att anpassa språket till *ditt* behov.
+
+För att t.ex. extenda Ruby eller Java krävs det att man hackar C.
 
 Thanks to the read-eval-print loop (REPL) everything can be changed.
 
@@ -119,15 +175,38 @@ Records
 
 * ( java Interop )
 
+- Create and interact with Java classes/objects
+- Implement interfaces / extend classes
+- Interacting with Java from Clojure can actually result in *fewer* parentheses..
+
 * ( clojureScript )
 
 Killer feature. Full stack. Ship libraries for both JVM and Javascript.
 Share code. Share data. 
 
+Growing - recently a Clojurescript compiler in Javascript (no JVM dep).
+
+- I hear it's great! A bunch of frameworks that builds on top of React (Om, Reagent)
+- Merges well with Clojure's way to handle state (an atom)
+- Compiles Javascript using Googles Closure compiler
+- https://clojurescript.org/
+- Full stack language. Immutable datastructures all the way.
+
 * ( clojure Community \hearts )
 
+  - Very open community
+  - Creative (Inventing stuff) and a bit artsy
+    - Quil and Overtone
+    - Check out http://overtone.github.io/ and http://quil.info/
+    - Very inclusive
+  - Clojure Remote
+    
 * ( developer Experience )
 
+- Developer Experience
+  - The REPL
+  - Thinking inside-out.
+    
 * ( getting Started )
 http://www.braveclojure.com/
 * ( end )
@@ -208,405 +287,3 @@ http://www.braveclojure.com/
     - Again, the REPL
     - Macros
     
-
-* Code samples
-
-** Data-types
-
-| TYPE       |         |
-|------------+---------+
-| string     | "foo"   |
-| charachter | \f      |
-| regex      | #"fo*"  |
-| integer    | 42      |
-| double     | 3.14159 |
-| boolean    | true    |
-| nil        | nil     |
-| symbol     | foo, +  |
-| keyword    | :foo    |
-
-** Macros
-
-#+BEGIN_SRC clojure
-  (+ 1 1)
-  ;; 2
-
-  (concat [1 2 3] [4 5 6])
-  ;; (1 2 3 4 5 6)
-
-  (defmacro infix
-    "Allows you to call a fn with two args as '(arg1 fn arg2)'"
-    [infixed] (list (second infixed) (first infixed) (last infixed)))
-
-  (infix (1 + 1))
-  ;; 2
-
-  (infix ([1 2 3] concat [4 5 6]))
-  ;; (1 2 3 4 5 6)
-#+END_SRC
-
-** Name-spaces
-
-The way to organize code. Compare to Java packages.
-
-#+BEGIN_SRC clojure
-(ns foo.bar)
-
-(def abc 123)
-#+END_SRC
-
-Refer to a var in another namespace:
-
-#+BEGIN_SRC clojure
-(ns some.app
-  (:require [foo.bar :as bar]))
-
-bar/abc
-;; 123
-#+END_SRC
-
-** Bindings
-
-Name-spaced binding
-
-#+BEGIN_SRC clojure
-(def a-number 123)
-
-a-number
-;; 123
-#+END_SRC
-
-Local binding
-
-#+BEGIN_SRC clojure
-  (let [a 123
-        b 567]
-    (+ a b))
-  ;; 690
-#+END_SRC
-
-** Functions
-
-#+BEGIN_SRC clojure
-  ;; Anonymous function
-  (fn [n] (+ 1 n))
-
-  ;; Or - shorter:
-  #(+ 1 %)
-
-  ;; Not that useful:
-  ((fn [n] #(+ 1 %)) 3)
-  ;; 4
-
-  ;; Bind to a symbol
-  (def add-one (fn [n] (+ 1 n)))
-
-  (add-one 3)
-  ;; 4
-
-  ;; defn-macro
-  (defn add-one [n] (+ n 1))
-
-  (add-one 3)
-  ;; 4
-#+END_SRC
-
-** Java interop
-
-#+BEGIN_SRC clojure
-  ;; Call a static function (java.lang is always available)
-  (System/currentTimeMillis)
-  ;; 1496866017229
-
-  ;; Create an instance
-  (java.util.ArrayList. )
-
-  ;; Add elements to a list, not really useful..
-  (.add (java.util.ArrayList.) "elem1")
-
-  ;; Mutating
-  (let [list (java.util.ArrayList.)]
-    (.add list "elem1")
-    (.add list "elem2")
-    list) ;; Return the mutated array list
-
-  ;; Better
-  (doto (java.util.ArrayList.)
-    (.add "elem1")
-    (.add "elem2")
-    (.add "elem3"))
-  ;; ["elem1" "elem2" "elem3"]
-#+END_SRC
-
-** S-Expressions
-
-#+BEGIN_SRC clojure
-;; An expression is always of the form (fn arg1 arg2 ...)
-(inc 2)
-;; 3
-
-(println "Hello")
-;; <prints 'Hello' to stdout
-
-(+ 1 1)
-;; 2
-
-;; Evaluation order - inner expressions are always evaluated first
-
-(+ 1 (* 4 5))
-;; 21
-#+END_SRC
-
-** Working with collections
-
-*** Sequences
-
-#+BEGIN_SRC clojure
-;; Vector
-[1 4 6]
-
-;; List
-'(1 4 6)
-
-;; Difference?
-(conj [1 4 6] 8)
-;; [1 4 6 8]
-(conj '(1 4 6) 8)
-;; (8 1 4 6)
-#+END_SRC
-
-*** Maps
-
-The bread and butter!
-
-#+BEGIN_SRC clojure
-  (def record {:album "Blunderbuss"
-               :artist "Jack White"
-               :released 2013})
-
-  (get record :artist)
-  ;; "Jack White"
-
-  (:album record)
-  ;; "Blunderbuss"
-
-  (assoc record :tracks 13)
-  ;; {:album "Blunderbuss" :artist "Jack White" :released 2013 :tracks 13}
-
-  (update record :released inc)
-  ;; {:album "Blunderbuss" :artist "Jack White" :released 2014 :tracks 13}
-
-#+END_SRC
-
-*** Sets
-
-#+BEGIN_SRC clojure
-  (def a-set #{:a :b :c})
-
-  (conj a-set :b)
-  ;; #{:a :b :c}
-  (conj a-set :k)
-  ;; #{:a :b :c :k}
-
-  (contains? a-set :a)
-  ;; true
-
-  (a-set :b)
-  ;; :b
-#+END_SRC
-
-*** Map-ing values
-
-#+BEGIN_SRC clojure
-(def coll ["a" "bbb" "cccc"])
-
-(map #(count %) coll)
-;; (1 3 4)
-
-;; Or shorter
-(map count coll)
-#+END_SRC
-
-*** Filtering
-
-#+BEGIN_SRC clojure
-  (def coll [1 2 3 4])
-
-  (filter odd? coll)
-  ;; (1 3)
-#+END_SRC
-
-*** Reduce
-
-#+BEGIN_SRC clojure
-  (def numbers [1 2 3 4 5])
-
-  (reduce + 0 numbers)
-  ;; 15
-#+END_SRC
-
-*** Composing
-
-#+BEGIN_SRC clojure
-  (def people [{:age 12 :name "Nisse"}
-               {:age 45 :name "Klas"}
-               {:age 4 :name "Teo"}
-               {:age 21 :name "Micke"}])
-
-  ;; Find names of all underage persons
-  (map :name
-       (filter #(< (:age %) 18) people))
-
-  ;; Or maybe more readable with the thread-macro
-  (->> people
-      (filter #(< (:age %) 18))
-      (map :name))
-  ;; ("Nisse" "Teo")
-#+END_SRC
-
-** State!
-
-*** Atoms
-
-An atom is a reference to a mutable *value*. Can only be updated with very explicit semantics.
-
-#+BEGIN_SRC clojure
-(def state (atom 0))
-
-;; Dereference an atom
-@state
-;; 0
-
-;; Update a value
-(swap! state inc)
-;; 1
-
-@state
-;; 1
-#+END_SRC
-
-Validate an atom
-
-#+BEGIN_SRC clojure
-(def state (atom 1 :validator pos?))
-
-(swap! state dec)
-;; IllegalStateException
-#+END_SRC
-
-*** Refs
-
-STM - Software Transactional Memory
-
-#+BEGIN_SRC clojure
-  (def count-ref (ref 0))
-  (def entries-ref (ref []))
-
-  (dosync
-   (alter entries-ref conj "yellow")
-   (alter count-ref inc))
-
-  @count-ref
-  ;; 1
-  @entries-ref
-  ;; ["yellow"]
-#+END_SRC
-
-
-* ( Clojure )
-
-- "LEARN at least one new language every year."
-- It will change the way you think
-
-* Yes, but why *Clojure*?
-
-  - It's a LISP!
-  - Most other main-stream languages are "same same, but different"
-  - Forces you to exercise new areas of the brain
-    
-* Quick history
-
-  - LISP - McCarthy 1958
-    - "Lots of Irritating Superfluous Parentheses"
-  - Created by Rich Hickey *year*
-  - Go here. Read and view everything.
-    - https://github.com/tallesl/Rich-Hickey-fanclub
-
-* Why is clojure so exciting (for me)?
-
-- 
-
-* Quick introduction
-
-  - The *simplest* language of them all
-    - Simple made easy: Rich Hickey https://www.youtube.com/watch?v=rI8tNMsozo0
-    - "Simplicity is prerequisite for reliability -- Edsger Dijkstra"
-  - Data types (literals, yay)
-  - Defining bindings
-  - Functions
-  - Philosophy
-    - ""It is better to have 100 functions operate on one data structure than 10 functions on 10 data structures." —Alan Perlis
-    - Compare this two how normal OO programs deal with this
-    - Everything is a typed class. How do you reuse and compose functions on those types?
-    - Everything is a Hash.
-
-But - the parenthesis?
-
-#+BEGIN_SRC clojure
-(. (. person getAddress) getZipCode) ;; 4
-(.. person getAddress getZipCode) ;; 2
-#+END_SRC
-
-#+BEGIN_SRC java
-person.getAddress().getZipCode(); // 4
-#+END_SRC
-
-* Datatypes
-
-| type       | example | in java                 |
-|------------+---------+-------------------------|
-| string     | "foo"   | String                  |
-| charachter | \f      | Charachter              |
-| regex      | #"fo*"  | Pattern                 |
-| integer    | 42      | Integer/Long/BigInteger |
-| double     | 3.14159 | Double/BigDecimal       |
-| boolean    | true    | Boolean                 |
-| nil        | nil     | null                    |
-| symbol     | foo, +  | N/A                     |
-| keyword    | :foo    | N/A                     |
-
-* State?
-
-STATE is only *changed* in well-defined places.
-Atoms, Agents and Refs
-
-* Immutability
-
-"Mutable shared state is the root to all evil" -- Dale Schumacher
-By default everything is immutable. 
-Persistent data-structures
-
-* Why is mutability bad/hard
-
-- "In which state is my object?"
-- When did it change?
-- Who changed it?
-- Add threads to the  mix and presto: Mayhem!
-- "The value of values" (Rich Hickey) https://www.youtube.com/watch?v=-6BsiVyC1kM
-
-* Macros
-
-Invent your own language.
-Play by your rules.
-
-* Java Interop
-
-* Javascript Interop
-
-* DEVELOPER Experience
-
-  - The REPL - oh joy!
-  - 
-
-
-
